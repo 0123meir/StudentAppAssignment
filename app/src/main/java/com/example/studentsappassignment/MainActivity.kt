@@ -1,47 +1,31 @@
 package com.example.studentsappassignment
 
 import android.os.Bundle
-import androidx.activity.ComponentActivity
-import androidx.activity.compose.setContent
+import android.view.Menu
+import android.view.MenuItem
 import androidx.activity.enableEdgeToEdge
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
-import com.example.studentsappassignment.ui.theme.StudentsAppAssignmentTheme
+import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.Toolbar
+import androidx.core.view.ViewCompat
+import androidx.core.view.WindowInsetsCompat
+import androidx.navigation.NavController
+import androidx.navigation.fragment.NavHostFragment
 
-class MainActivity : ComponentActivity() {
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
-        setContent {
-            StudentsAppAssignmentTheme {
-                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    Greeting(
-                        name = "Android",
-                        modifier = Modifier.padding(innerPadding)
-                    )
-                }
-            }
+class MainActivity : AppCompatActivity() {
+        override fun onCreate(savedInstanceState: Bundle?) {
+            super.onCreate(savedInstanceState)
+            setContentView(R.layout.student_item)
+
+            val recyclerView: androidx.recyclerview.widget.RecyclerView = findViewById(R.id.student_recycler_view)
+            recyclerView.layoutManager = androidx.recyclerview.widget.LinearLayoutManager(this)
+
+            val studentList = listOf(
+                Student(1, "Alice", "123-456-7890", "123 Main St", R.drawable.default_image),
+                Student(2, "Bob", "987-654-3210", "456 Oak Ave", R.drawable.default_image),
+                // Add more students here
+            )
+
+            val adapter = StudentAdapter(studentList)
+            recyclerView.adapter = adapter
         }
-    }
-}
-
-@Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
-    )
-}
-
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview() {
-    StudentsAppAssignmentTheme {
-        Greeting("Android")
-    }
 }
