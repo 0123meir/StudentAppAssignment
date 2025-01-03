@@ -16,16 +16,6 @@ class MainActivity : AppCompatActivity() {
             super.onCreate(savedInstanceState)
             setContentView(R.layout.student_item)
 
-//            val recyclerView: androidx.recyclerview.widget.RecyclerView = findViewById(R.id.student_recycler_view)
-//            recyclerView.layoutManager = androidx.recyclerview.widget.LinearLayoutManager(this)
 
-            val studentList = listOf(
-                Student(1, "Alice", "123-456-7890", "123 Main St", R.drawable.default_image),
-                Student(2, "Bob", "987-654-3210", "456 Oak Ave", R.drawable.default_image),
-                // Add more students here
-            )
-
-//            val adapter = StudentAdapter(studentList)
-//            recyclerView.adapter = adapter
         }
 }
