@@ -13,8 +13,6 @@ class StudentAdapter(private val studentList: List<Student>) :
     class StudentViewHolder(itemView: View) : androidx.recyclerview.widget.RecyclerView.ViewHolder(itemView) {
         val nameTextView: TextView = itemView.findViewById(R.id.student_name)
         val idTextView: TextView = itemView.findViewById(R.id.student_id)
-        val phoneTextView: TextView = itemView.findViewById(R.id.student_phone)
-        val addressTextView: TextView = itemView.findViewById(R.id.student_address)
         val pictureImageView: ImageView = itemView.findViewById(R.id.student_picture)
     }
 
@@ -28,8 +26,6 @@ class StudentAdapter(private val studentList: List<Student>) :
         val currentStudent = studentList[position]
         holder.nameTextView.text = currentStudent.name
         holder.idTextView.text = currentStudent.id.toString()
-        holder.phoneTextView.text = currentStudent.phone
-        holder.addressTextView.text = currentStudent.address
         holder.pictureImageView.setImageResource(currentStudent.picture)
     }
 
