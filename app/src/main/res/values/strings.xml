@@ -2,4 +2,6 @@
     <string name="app_name">StudentsAppAssignment</string>
     <string name="student_name">Student Name</string>
     <string name="student_id">student ID</string>
+    <string name="student_image">student_image</string>
+
 </resources>
