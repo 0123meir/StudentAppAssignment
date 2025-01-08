@@ -1,6 +1,10 @@
 package com.example.studentsappassignment
 
+import android.content.Intent
 import android.os.Bundle
+import android.view.MotionEvent
+import android.view.View.OnTouchListener
+import android.widget.Button
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -29,7 +33,21 @@ private var students: List<Student>? = null
         val studentsRecyclerView = findViewById<RecyclerView>(R.id.studentsRecyclerView)
         studentsRecyclerView.layoutManager = LinearLayoutManager(this)
         adapter = StudentAdapter(students)
+
         studentsRecyclerView.adapter = adapter
+        studentsRecyclerView.setOnTouchListener { view, motionEvent ->
+            if (motionEvent.action == MotionEvent.ACTION_UP)
+                view.performClick()
+            else
+                false
+        }
+
+        val addStudentButton = findViewById<Button>(R.id.main_activity_add_student_button)
+        addStudentButton.setOnClickListener {
+            // Create an intent to navigate to AddStudentActivity
+            val intent = Intent(this, CreateStudent::class.java)
+            startActivity(intent) // Start the AddStudentActivity
+        }
 
     }
 
