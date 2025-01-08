@@ -48,7 +48,6 @@ private var students: List<Student>? = null
     }
 
     private fun getAllStudents() {
-
         Model.shared.getAllStudents {
             //TODO: remove when added users
             if (it.isEmpty()) {
