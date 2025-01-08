@@ -1,6 +1,7 @@
 package com.example.studentsappassignment
 
 import android.content.Intent
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -8,6 +9,7 @@ import android.widget.CheckBox
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.example.studentsappassignment.model.Model
 import com.example.studentsappassignment.model.Student
 
 class StudentAdapter(private var studentList: List<Student>?) :
@@ -54,7 +56,7 @@ class StudentAdapter(private var studentList: List<Student>?) :
                 // Start the StudentDetailsActivity
                 val context = holder.itemView.context
                 val intent = Intent(context, StudentDetails::class.java)
-                intent.putExtra("studentId", student.id) // Pass the Student object (if Parcelable)
+                intent.putExtra("student", student)
                 context.startActivity(intent)
             }
         }

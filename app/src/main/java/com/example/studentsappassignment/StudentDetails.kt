@@ -1,5 +1,6 @@
 package com.example.studentsappassignment
 
+import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import android.widget.CheckBox
@@ -32,17 +33,18 @@ class StudentDetails : AppCompatActivity() {
         val checkbox: CheckBox = findViewById(R.id.student_details_checkbox)
         val editButton: Button = findViewById(R.id.student_details_edit_button)
 
-        val studentId = intent.getStringExtra("studentId") ?: ""
-        Model.shared.getStudentById(studentId) {
-            this.student = it
-            name.text = it.name
-            phone.text = it.phone
-            address.text = it.address
-            id.text = it.id
-            checkbox.isChecked = it.isChecked
+        val student = intent.getParcelableExtra<Student>("student")
+
+            name.text = student?.name
+            phone.text = student?.phone
+            address.text = student?.address
+            id.text = student?.id
+            checkbox.isChecked = student?.isChecked ?: false
             editButton.setOnClickListener{
-                //it
+                val intent = Intent(this, EditStudent::class.java)
+                intent.putExtra("studentId", it.id)
+                startActivity(intent)
             }
-        }
+
    }
 }
