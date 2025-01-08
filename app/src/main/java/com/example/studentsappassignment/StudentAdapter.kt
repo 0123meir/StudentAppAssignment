@@ -1,5 +1,6 @@
 package com.example.studentsappassignment
 
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -21,8 +22,8 @@ class StudentAdapter(private var studentList: List<Student>?) :
             itemView.setOnClickListener {
                 val position = bindingAdapterPosition
                 if (position != RecyclerView.NO_POSITION) {
-//                    val clickedStudent = studentList[position]
-//                    Handle item click here
+                    //val clickedStudent = studentList[position]
+                    //Handle item click here
                 }
 
             }
@@ -46,6 +47,17 @@ class StudentAdapter(private var studentList: List<Student>?) :
             holder.idTextView.text = currentStudent?.id
             holder.pictureImageView.setImageResource(currentStudent?.picture ?: R.drawable.default_image)
             holder.checkBox.isChecked = currentStudent?.isChecked ?: false
+
+        // Handle item click
+        holder.itemView.setOnClickListener {
+            currentStudent?.let { student ->
+                // Start the StudentDetailsActivity
+                val context = holder.itemView.context
+                val intent = Intent(context, StudentDetails::class.java)
+                intent.putExtra("studentId", student.id) // Pass the Student object (if Parcelable)
+                context.startActivity(intent)
+            }
+        }
     }
     
     override fun getItemCount(): Int {

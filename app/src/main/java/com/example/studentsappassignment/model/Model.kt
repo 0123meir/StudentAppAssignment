@@ -7,6 +7,8 @@ import com.example.studentsappassignment.model.dao.AppLocalDbRepository
 import java.util.concurrent.Executors
 
 typealias StudentsCallback = (List<Student>) -> Unit
+typealias StudentCallback = (Student) -> Unit
+
 typealias EmptyCallback = () -> Unit
 
 interface GetAllStudentsListener {
@@ -22,24 +24,48 @@ class Model private constructor() {
     companion object {
         val shared = Model()
     }
+    fun getStudentById(id: String, callback: StudentCallback) {
+        executor.execute {
+            val student = database.studentDao().getStudentById(id)
+
+            mainHandler.post {
+                callback(student)
+            }
+        }
+    }
 
     fun getAllStudents(callback: StudentsCallback) {
         executor.execute {
             val students = database.studentDao().getAllStudents()
-
-//            Thread.sleep(4000)
 
             mainHandler.post {
                 callback(students)
             }
         }
     }
-
     fun add(student: Student, callback: EmptyCallback) {
         executor.execute {
             database.studentDao().insertStudents(student)
 
-            Thread.sleep(4000)
+            mainHandler.post {
+                callback()
+            }
+        }
+    }
+
+    fun edit(student: Student, callback: EmptyCallback) {
+        executor.execute {
+            database.studentDao().insertStudents(student)
+
+            mainHandler.post {
+                callback()
+            }
+        }
+    }
+
+    fun delete(student: Student, callback: EmptyCallback) {
+        executor.execute {
+            database.studentDao().delete(student)
 
             mainHandler.post {
                 callback()
