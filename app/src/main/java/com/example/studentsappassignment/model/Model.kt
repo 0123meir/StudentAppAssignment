@@ -27,7 +27,7 @@ class Model private constructor() {
         executor.execute {
             val students = database.studentDao().getAllStudents()
 
-            Thread.sleep(4000)
+//            Thread.sleep(4000)
 
             mainHandler.post {
                 callback(students)
