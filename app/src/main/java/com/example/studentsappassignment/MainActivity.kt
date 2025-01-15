@@ -2,8 +2,12 @@ package com.example.studentsappassignment
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.MotionEvent
+import android.view.View
 import android.view.View.OnTouchListener
+import android.view.ViewGroup
+import android.widget.AdapterView.OnItemClickListener
 import android.widget.Button
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -34,13 +38,18 @@ private var students: List<Student>? = null
         studentsRecyclerView.layoutManager = LinearLayoutManager(this)
         adapter = StudentAdapter(students)
 
-        studentsRecyclerView.adapter = adapter
-        studentsRecyclerView.setOnTouchListener { view, motionEvent ->
-            if (motionEvent.action == MotionEvent.ACTION_UP)
-                view.performClick()
-            else
-                false
+        adapter?.listener = object: com.example.studentsappassignment.OnItemClickListener {
+            override fun onItemClick(position: Int) {
+                Log.d("TAG", "On click Activity listener on position $position")
+            }
+
+            override fun onItemClick(student: Student?) {
+                val intent = Intent(this@MainActivity, StudentDetails::class.java)
+                intent.putExtra("student", student)
+                startActivity(intent)
+            }
         }
+        studentsRecyclerView.adapter = adapter
 
         val addStudentButton = findViewById<Button>(R.id.main_activity_add_student_button)
         addStudentButton.setOnClickListener {

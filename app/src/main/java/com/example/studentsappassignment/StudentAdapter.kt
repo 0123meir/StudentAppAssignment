@@ -12,26 +12,13 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.studentsappassignment.model.Model
 import com.example.studentsappassignment.model.Student
 
+interface OnItemClickListener {
+    fun onItemClick(position: Int)
+    fun onItemClick(student: Student?)
+}
 class StudentAdapter(private var studentList: List<Student>?) :
     RecyclerView.Adapter<StudentAdapter.StudentViewHolder>() {
-
-    class StudentViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val nameTextView: TextView = itemView.findViewById(R.id.student_name)
-        val idTextView: TextView = itemView.findViewById(R.id.student_id)
-        val pictureImageView: ImageView = itemView.findViewById(R.id.student_image)
-        val checkBox: CheckBox = itemView.findViewById(R.id.checkBox)
-        init {
-            itemView.setOnClickListener {
-                val position = bindingAdapterPosition
-                if (position != RecyclerView.NO_POSITION) {
-                    //val clickedStudent = studentList[position]
-                    //Handle item click here
-                }
-
-            }
-        }
-
-    }
+    var listener: OnItemClickListener? = null
 
     fun set(students: List<Student>?) {
         this.studentList = students
@@ -40,24 +27,33 @@ class StudentAdapter(private var studentList: List<Student>?) :
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): StudentViewHolder {
         val itemView = LayoutInflater.from(parent.context)
             .inflate(R.layout.student_item, parent, false) // Create your student_item layout
-        return StudentViewHolder(itemView)
+        return StudentViewHolder(itemView, listener)
     }
 
     override fun onBindViewHolder(holder: StudentViewHolder, position: Int) {
-        val currentStudent = studentList?.get(position)
-            holder.nameTextView.text = currentStudent?.name
-            holder.idTextView.text = currentStudent?.id
-            holder.pictureImageView.setImageResource(currentStudent?.picture ?: R.drawable.default_image)
-            holder.checkBox.isChecked = currentStudent?.isChecked ?: false
+        holder.bind(studentList?.get(position), position)
+    }
 
-        // Handle item click
-        holder.itemView.setOnClickListener {
-            currentStudent?.let { student ->
-                // Start the StudentDetailsActivity
-                val context = holder.itemView.context
-                val intent = Intent(context, StudentDetails::class.java)
-                intent.putExtra("student", student)
-                context.startActivity(intent)
+    class StudentViewHolder(itemView: View, listener: OnItemClickListener?) : RecyclerView.ViewHolder(itemView) {
+        val nameTextView: TextView = itemView.findViewById(R.id.student_name)
+        val idTextView: TextView = itemView.findViewById(R.id.student_id)
+        val pictureImageView: ImageView = itemView.findViewById(R.id.student_image)
+        val checkBox: CheckBox = itemView.findViewById(R.id.checkBox)
+        private var student: Student? = null
+        init {
+            itemView.setOnClickListener {
+                listener?.onItemClick(adapterPosition)
+                listener?.onItemClick(student)
+            }
+        }
+
+        fun bind(student: Student?, position: Int) {
+            this.student = student
+            nameTextView.text = student?.name
+            idTextView.text = student?.id
+            checkBox.apply {
+                isChecked = student?.isChecked ?: false
+                tag = position
             }
         }
     }

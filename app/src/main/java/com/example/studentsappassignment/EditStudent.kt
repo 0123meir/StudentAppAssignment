@@ -51,6 +51,9 @@ class EditStudent : AppCompatActivity() {
                 R.drawable.default_image,
                 checkbox.isChecked)
             Model.shared.add(student) {
+                val intent = Intent(this, MainActivity::class.java)
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK)
+                startActivity(intent)
                 finish()
             }
         })

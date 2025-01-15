@@ -14,8 +14,6 @@ import com.example.studentsappassignment.model.Model
 import com.example.studentsappassignment.model.Student
 
 class StudentDetails : AppCompatActivity() {
-    private var student: Student? = null
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -32,6 +30,7 @@ class StudentDetails : AppCompatActivity() {
         val id: TextView = findViewById(R.id.student_details_textId)
         val checkbox: CheckBox = findViewById(R.id.student_details_checkbox)
         val editButton: Button = findViewById(R.id.student_details_edit_button)
+        val backButton: Button = findViewById(R.id.student_details_back_button)
 
         val student = intent.getParcelableExtra<Student>("student")
 
@@ -42,9 +41,13 @@ class StudentDetails : AppCompatActivity() {
             checkbox.isChecked = student?.isChecked ?: false
             editButton.setOnClickListener{
                 val intent = Intent(this, EditStudent::class.java)
-                intent.putExtra("studentId", it.id)
+                intent.putExtra("student", student)
                 startActivity(intent)
             }
+
+        backButton.setOnClickListener{
+            finish();
+        }
 
    }
 }
