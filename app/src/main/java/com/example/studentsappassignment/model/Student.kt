@@ -8,11 +8,11 @@ import androidx.room.PrimaryKey
 @Entity
 data class Student(
     @PrimaryKey val id: String,
-    val name: String,
-    val phone: String,
-    val address: String,
-    val picture: Int,
-    val isChecked: Boolean
+    var name: String,
+    var phone: String,
+    var address: String,
+    var picture: Int,
+    var isChecked: Boolean
 ) : Parcelable {
     constructor(parcel: Parcel) : this(
         parcel.readString()!!,

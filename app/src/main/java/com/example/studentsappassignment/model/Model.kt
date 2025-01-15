@@ -53,12 +53,12 @@ class Model private constructor() {
         }
     }
 
-    fun edit(student: Student, callback: EmptyCallback) {
+    fun edit(student: Student, callback: (Student) -> Unit) {
         executor.execute {
             database.studentDao().insertStudents(student)
 
             mainHandler.post {
-                callback()
+                callback(student)
             }
         }
     }
