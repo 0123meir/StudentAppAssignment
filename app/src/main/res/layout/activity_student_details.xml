@@ -15,7 +15,7 @@
         android:layout_marginBottom="16dp"
         android:scaleX="1.1"
         android:scaleY="1.1"
-        android:text="Edit"
+        android:text="@string/edit"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/student_details_back_button" />
@@ -56,7 +56,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
-        android:text="CheckBox"
+        android:text="@string/checkbox"
         android:enabled="false"
         app:layout_constraintStart_toStartOf="@+id/textName"
         app:layout_constraintTop_toBottomOf="@+id/textPhone" />
@@ -84,7 +84,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="36dp"
-        android:text="Name"
+        android:text="@string/name"
         app:layout_constraintBottom_toBottomOf="@+id/textName"
         app:layout_constraintEnd_toStartOf="@+id/textName" />
 
@@ -92,7 +92,7 @@
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Address"
+        android:text="@string/address"
         app:layout_constraintBottom_toBottomOf="@+id/textPostalAddress"
         app:layout_constraintStart_toStartOf="@+id/textView" />
 
@@ -100,7 +100,7 @@
         android:id="@+id/textView3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="ID"
+        android:text="@string/id"
         app:layout_constraintBottom_toBottomOf="@+id/student_details_textId"
         app:layout_constraintStart_toStartOf="@+id/textView" />
 
@@ -108,7 +108,7 @@
         android:id="@+id/textView4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Phone"
+        android:text="@string/phone"
         app:layout_constraintBottom_toBottomOf="@+id/textPhone"
         app:layout_constraintStart_toStartOf="@+id/textView3" />
 
@@ -118,7 +118,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="88dp"
         android:layout_marginBottom="20dp"
-        android:text="Back"
+        android:text="@string/back"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 

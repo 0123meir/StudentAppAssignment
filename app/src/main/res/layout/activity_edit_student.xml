@@ -15,7 +15,7 @@
         android:layout_marginBottom="4dp"
         android:scaleX="1.1"
         android:scaleY="1.1"
-        android:text="Save"
+        android:text="@string/save"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
@@ -57,7 +57,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
-        android:text="CheckBox"
+        android:text="@string/checkbox"
         app:layout_constraintStart_toStartOf="@+id/edit_student_editTextName"
         app:layout_constraintTop_toBottomOf="@+id/edit_student_editTextPhone" />
 
@@ -89,7 +89,7 @@
         android:layout_marginBottom="4dp"
         android:scaleX="1.1"
         android:scaleY="1.1"
-        android:text="Cancel"
+        android:text="@string/cancel"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
@@ -99,7 +99,7 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="24dp"
         android:layout_marginBottom="16dp"
-        android:text="Name"
+        android:text="@string/name"
         app:layout_constraintBottom_toBottomOf="@+id/edit_student_editTextName"
         app:layout_constraintEnd_toStartOf="@+id/edit_student_editTextName" />
 
@@ -108,7 +108,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
-        android:text="Address"
+        android:text="@string/address"
         app:layout_constraintBottom_toBottomOf="@+id/edit_student_editTextPostalAddress"
         app:layout_constraintStart_toStartOf="@+id/edit_student_name" />
 
@@ -117,7 +117,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
-        android:text="ID"
+        android:text="@string/id"
         app:layout_constraintBottom_toBottomOf="@+id/edit_student_editTextId"
         app:layout_constraintStart_toStartOf="@+id/edit_student_name" />
 
@@ -126,7 +126,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
-        android:text="Phone"
+        android:text="@string/phone"
         app:layout_constraintBottom_toBottomOf="@+id/edit_student_editTextPhone"
         app:layout_constraintStart_toStartOf="@+id/edit_student_name" />
 
@@ -137,7 +137,7 @@
         android:layout_marginBottom="4dp"
         android:scaleX="1.1"
         android:scaleY="1.1"
-        android:text="Delete"
+        android:text="@string/delete"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/edit_student_save_button"
         app:layout_constraintStart_toEndOf="@+id/edit_student_cancel_button" />
