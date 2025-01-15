@@ -1,6 +1,5 @@
 package com.example.studentsappassignment
 
-import android.content.Intent
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -57,7 +56,6 @@ class StudentAdapter(private var studentList: List<Student>?) :
             }
             checkBox.setOnClickListener {
                 student?.let { student ->
-                    // Use the `student` object passed to the callback to update `isChecked`
                     Model.shared.edit(student) { updatedStudent ->
                         updatedStudent.isChecked = checkBox.isChecked
                         Log.d("StudentAdapter", "Student ${updatedStudent.name} isChecked: ${updatedStudent.isChecked}")

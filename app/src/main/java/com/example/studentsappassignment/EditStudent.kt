@@ -33,6 +33,7 @@ class EditStudent : AppCompatActivity() {
         val checkbox: CheckBox = findViewById(R.id.edit_student_checkbox);
         val cancelButton: Button = findViewById(R.id.edit_student_cancel_button)
         val saveButton: Button = findViewById(R.id.edit_student_save_button)
+        val deleteButton: Button = findViewById(R.id.edit_student_delete_button)
 
         val student = intent.getParcelableExtra<Student>("student")
 
@@ -42,22 +43,36 @@ class EditStudent : AppCompatActivity() {
         idField.setText(student?.id)
         checkbox.isChecked = student?.isChecked ?: false
 
-        saveButton.setOnClickListener({
-            val student = Student(
-                idField.text.toString(),
-                nameField.text.toString(),
-                phoneField.text.toString(),
-                addressField.text.toString(),
-                R.drawable.default_image,
-                checkbox.isChecked)
-            Model.shared.add(student) {
-                val intent = Intent(this, MainActivity::class.java)
-                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK)
-                startActivity(intent)
-                finish()
+        saveButton.setOnClickListener {
+            student?.let { updatedStudent ->
+                updatedStudent.id = idField.text.toString()
+                updatedStudent.name = nameField.text.toString()
+                updatedStudent.phone = phoneField.text.toString()
+                updatedStudent.address = addressField.text.toString()
+                updatedStudent.picture = R.drawable.default_image
+                updatedStudent.isChecked = checkbox.isChecked
+
+                Model.shared.edit(updatedStudent) {
+                    returnHome()
+                }
             }
-        })
+        }
+
+        deleteButton.setOnClickListener {
+            if (student != null) {
+                Model.shared.delete(student) {
+                    returnHome()
+                }
+            }
+        }
 
         cancelButton.setOnClickListener({finish()})
+    }
+
+    private fun returnHome() {
+        val intent = Intent(this, MainActivity::class.java)
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK)
+        startActivity(intent)
+        finish()
     }
 }

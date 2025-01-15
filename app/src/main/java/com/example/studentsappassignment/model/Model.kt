@@ -55,7 +55,7 @@ class Model private constructor() {
 
     fun edit(student: Student, callback: (Student) -> Unit) {
         executor.execute {
-            database.studentDao().insertStudents(student)
+            database.studentDao().updateStudent(student)
 
             mainHandler.post {
                 callback(student)

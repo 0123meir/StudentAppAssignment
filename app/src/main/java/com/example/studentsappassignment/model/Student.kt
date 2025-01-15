@@ -7,7 +7,7 @@ import androidx.room.PrimaryKey
 
 @Entity
 data class Student(
-    @PrimaryKey val id: String,
+    @PrimaryKey var id: String,
     var name: String,
     var phone: String,
     var address: String,
