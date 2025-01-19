@@ -6,6 +6,7 @@ import android.util.Log
 import android.widget.Button
 import android.widget.CheckBox
 import android.widget.EditText
+import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -14,8 +15,6 @@ import com.example.studentsappassignment.model.Model
 import com.example.studentsappassignment.model.Student
 
 class EditStudent : AppCompatActivity() {
-    private var student: Student? = null
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -44,16 +43,30 @@ class EditStudent : AppCompatActivity() {
         checkbox.isChecked = student?.isChecked ?: false
 
         saveButton.setOnClickListener {
-            student?.let { updatedStudent ->
-                updatedStudent.id = idField.text.toString()
-                updatedStudent.name = nameField.text.toString()
-                updatedStudent.phone = phoneField.text.toString()
-                updatedStudent.address = addressField.text.toString()
-                updatedStudent.picture = R.drawable.default_image
-                updatedStudent.isChecked = checkbox.isChecked
+            val newId = idField.text.toString()
 
-                Model.shared.edit(updatedStudent) {
-                    returnHome()
+            if (newId.isBlank()) {
+                Toast.makeText(this, "ID cannot be empty", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+
+            Model.shared.getStudentById(newId) { existingStudent ->
+                if (existingStudent != null && existingStudent.innerId != student?.innerId) {
+                    Toast.makeText(this, "Student with ID $newId already exists.", Toast.LENGTH_SHORT).show()
+                } else {
+                    student.let { updatedStudent ->
+                        if (updatedStudent != null) {
+                            updatedStudent.id = idField.text.toString()
+                            updatedStudent.name = nameField.text.toString()
+                            updatedStudent.phone = phoneField.text.toString()
+                            updatedStudent.address = addressField.text.toString()
+                            updatedStudent.picture = R.drawable.default_image
+                            updatedStudent.isChecked = checkbox.isChecked
+                            Model.shared.edit(updatedStudent) {
+                                returnHome()
+                            }
+                        }
+                    }
                 }
             }
         }

@@ -7,7 +7,7 @@ import com.example.studentsappassignment.model.dao.AppLocalDbRepository
 import java.util.concurrent.Executors
 
 typealias StudentsCallback = (List<Student>) -> Unit
-typealias StudentCallback = (Student) -> Unit
+typealias StudentCallback = (Student?) -> Unit
 
 typealias EmptyCallback = () -> Unit
 
