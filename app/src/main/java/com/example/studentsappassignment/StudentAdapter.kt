@@ -56,8 +56,8 @@ class StudentAdapter(private var studentList: List<Student>?) :
             }
             checkBox.setOnClickListener {
                 student?.let { student ->
+                    student.isChecked = checkBox.isChecked
                     Model.shared.edit(student) { updatedStudent ->
-                        updatedStudent.isChecked = checkBox.isChecked
                         Log.d("StudentAdapter", "Student ${updatedStudent.name} isChecked: ${updatedStudent.isChecked}")
                     }
                 }

@@ -26,8 +26,8 @@ class CreateStudent : AppCompatActivity() {
         val nameField : EditText = findViewById(R.id.editTextName)
         val phoneField : EditText = findViewById(R.id.editTextPhone)
         val addressField : EditText = findViewById(R.id.editTextPostalAddress)
-        val idField: EditText = findViewById(R.id.editTextId);
-        val checkbox: CheckBox = findViewById(R.id.checkbox);
+        val idField: EditText = findViewById(R.id.editTextId)
+        val checkbox: CheckBox = findViewById(R.id.checkbox)
         val cancelButton: Button = findViewById(R.id.create_student_cancel_button)
         val saveButton: Button = findViewById(R.id.create_student_save_button)
 
@@ -39,6 +39,7 @@ class CreateStudent : AppCompatActivity() {
                 addressField.text.toString(),
                 R.drawable.default_image,
                 checkbox.isChecked)
+
             Model.shared.add(student) {
                 finish()
             }
