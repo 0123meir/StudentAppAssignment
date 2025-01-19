@@ -33,12 +33,13 @@ class CreateStudent : AppCompatActivity() {
 
         saveButton.setOnClickListener({
             val student = Student(
-                idField.text.toString(),
-                nameField.text.toString(),
-                phoneField.text.toString(),
-                addressField.text.toString(),
-                R.drawable.default_image,
-                checkbox.isChecked)
+                id = idField.text.toString(),
+                name = nameField.text.toString(),
+                phone = phoneField.text.toString(),
+                address = addressField.text.toString(),
+                picture = R.drawable.default_image,
+                isChecked = checkbox.isChecked
+            )
 
             Model.shared.add(student) {
                 finish()

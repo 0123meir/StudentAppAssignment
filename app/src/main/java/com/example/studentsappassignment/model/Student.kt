@@ -7,7 +7,8 @@ import androidx.room.PrimaryKey
 
 @Entity
 data class Student(
-    @PrimaryKey var id: String,
+    @PrimaryKey(autoGenerate = true) val innerId: Long = 0,
+    var id: String,
     var name: String,
     var phone: String,
     var address: String,
@@ -15,6 +16,7 @@ data class Student(
     var isChecked: Boolean
 ) : Parcelable {
     constructor(parcel: Parcel) : this(
+        parcel.readLong(),
         parcel.readString()!!,
         parcel.readString()!!,
         parcel.readString()!!,
@@ -25,6 +27,7 @@ data class Student(
     }
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {
+        parcel.writeLong(innerId)
         parcel.writeString(id)
         parcel.writeString(name)
         parcel.writeString(phone)
