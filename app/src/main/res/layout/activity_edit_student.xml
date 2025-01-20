@@ -6,22 +6,22 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
-    tools:context=".CreateStudent">
+    tools:context=".EditStudent">
 
     <Button
-        android:id="@+id/create_student_save_button"
+        android:id="@+id/edit_student_save_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginEnd="44dp"
         android:layout_marginBottom="4dp"
         android:scaleX="1.1"
         android:scaleY="1.1"
         android:text="@string/save"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/editTextPhone"
-        app:layout_constraintTop_toBottomOf="@+id/checkbox" />
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <ImageView
-        android:id="@+id/imageView"
+        android:id="@+id/edit_student_imageView"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
@@ -32,7 +32,7 @@
         app:srcCompat="@drawable/default_image" />
 
     <EditText
-        android:id="@+id/editTextName"
+        android:id="@+id/edit_student_editTextName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
@@ -41,95 +41,105 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView" />
+        app:layout_constraintTop_toBottomOf="@+id/edit_student_imageView" />
 
     <EditText
-        android:id="@+id/editTextPhone"
+        android:id="@+id/edit_student_editTextPhone"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="48dp"
         android:ems="10"
         android:inputType="phone"
-        app:layout_constraintStart_toStartOf="@+id/editTextName"
-        app:layout_constraintTop_toBottomOf="@+id/editTextId" />
+        app:layout_constraintStart_toStartOf="@+id/edit_student_editTextName"
+        app:layout_constraintTop_toBottomOf="@+id/edit_student_editTextId" />
 
     <CheckBox
-        android:id="@+id/checkbox"
+        android:id="@+id/edit_student_checkbox"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
         android:text="@string/checkbox"
-        app:layout_constraintStart_toStartOf="@+id/editTextName"
-        app:layout_constraintTop_toBottomOf="@+id/editTextPhone" />
+        app:layout_constraintStart_toStartOf="@+id/edit_student_editTextName"
+        app:layout_constraintTop_toBottomOf="@+id/edit_student_editTextPhone" />
 
     <EditText
-        android:id="@+id/editTextPostalAddress"
+        android:id="@+id/edit_student_editTextPostalAddress"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="48dp"
         android:ems="10"
         android:inputType="textPostalAddress"
-        app:layout_constraintStart_toStartOf="@+id/editTextName"
-        app:layout_constraintTop_toBottomOf="@+id/editTextName" />
+        app:layout_constraintStart_toStartOf="@+id/edit_student_editTextName"
+        app:layout_constraintTop_toBottomOf="@+id/edit_student_editTextName" />
 
     <EditText
-        android:id="@+id/editTextId"
+        android:id="@+id/edit_student_editTextId"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="48dp"
         android:ems="10"
         android:inputType="number"
-        app:layout_constraintStart_toStartOf="@+id/editTextName"
-        app:layout_constraintTop_toBottomOf="@+id/editTextPostalAddress" />
+        app:layout_constraintStart_toStartOf="@+id/edit_student_editTextName"
+        app:layout_constraintTop_toBottomOf="@+id/edit_student_editTextPostalAddress" />
 
     <Button
-        android:id="@+id/create_student_cancel_button"
+        android:id="@+id/edit_student_cancel_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="44dp"
         android:layout_marginBottom="4dp"
         android:scaleX="1.1"
         android:scaleY="1.1"
         android:text="@string/cancel"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/create_student_save_button"
-        app:layout_constraintHorizontal_bias="0.133"
-        app:layout_constraintStart_toStartOf="@+id/checkbox"
-        app:layout_constraintTop_toBottomOf="@+id/checkbox" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
-        android:id="@+id/textView5"
+        android:id="@+id/edit_student_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="24dp"
-        android:layout_marginBottom="12dp"
+        android:layout_marginBottom="16dp"
         android:text="@string/name"
-        app:layout_constraintBottom_toBottomOf="@+id/editTextName"
-        app:layout_constraintEnd_toStartOf="@+id/editTextName" />
+        app:layout_constraintBottom_toBottomOf="@+id/edit_student_editTextName"
+        app:layout_constraintEnd_toStartOf="@+id/edit_student_editTextName" />
 
     <TextView
-        android:id="@+id/textView6"
+        android:id="@+id/edit_student_address"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
         android:text="@string/address"
-        app:layout_constraintBottom_toBottomOf="@+id/editTextPostalAddress"
-        app:layout_constraintStart_toStartOf="@+id/textView5" />
+        app:layout_constraintBottom_toBottomOf="@+id/edit_student_editTextPostalAddress"
+        app:layout_constraintStart_toStartOf="@+id/edit_student_name" />
 
     <TextView
-        android:id="@+id/textView7"
+        android:id="@+id/edit_student_id"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
         android:text="@string/id"
-        app:layout_constraintBottom_toBottomOf="@+id/editTextId"
-        app:layout_constraintStart_toStartOf="@+id/textView5" />
+        app:layout_constraintBottom_toBottomOf="@+id/edit_student_editTextId"
+        app:layout_constraintStart_toStartOf="@+id/edit_student_name" />
 
     <TextView
-        android:id="@+id/textView8"
+        android:id="@+id/edit_student_phone"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
         android:text="@string/phone"
-        app:layout_constraintBottom_toBottomOf="@+id/editTextPhone"
-        app:layout_constraintStart_toStartOf="@+id/textView5" />
+        app:layout_constraintBottom_toBottomOf="@+id/edit_student_editTextPhone"
+        app:layout_constraintStart_toStartOf="@+id/edit_student_name" />
+
+    <Button
+        android:id="@+id/edit_student_delete_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="4dp"
+        android:scaleX="1.1"
+        android:scaleY="1.1"
+        android:text="@string/delete"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/edit_student_save_button"
+        app:layout_constraintStart_toEndOf="@+id/edit_student_cancel_button" />
 </androidx.constraintlayout.widget.ConstraintLayout>

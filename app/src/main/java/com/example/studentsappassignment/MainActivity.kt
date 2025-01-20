@@ -2,6 +2,12 @@ package com.example.studentsappassignment
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
+import android.view.MotionEvent
+import android.view.View
+import android.view.View.OnTouchListener
+import android.view.ViewGroup
+import android.widget.AdapterView.OnItemClickListener
 import android.widget.Button
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -31,6 +37,18 @@ private var students: List<Student>? = null
         val studentsRecyclerView = findViewById<RecyclerView>(R.id.studentsRecyclerView)
         studentsRecyclerView.layoutManager = LinearLayoutManager(this)
         adapter = StudentAdapter(students)
+
+        adapter?.listener = object: com.example.studentsappassignment.OnItemClickListener {
+            override fun onItemClick(position: Int) {
+                Log.d("TAG", "On click Activity listener on position $position")
+            }
+
+            override fun onItemClick(student: Student?) {
+                val intent = Intent(this@MainActivity, StudentDetails::class.java)
+                intent.putExtra("student", student)
+                startActivity(intent)
+            }
+        }
         studentsRecyclerView.adapter = adapter
 
         val addStudentButton = findViewById<Button>(R.id.main_activity_add_student_button)
@@ -39,7 +57,6 @@ private var students: List<Student>? = null
             val intent = Intent(this, CreateStudent::class.java)
             startActivity(intent) // Start the AddStudentActivity
         }
-
     }
 
     override fun onResume() {
@@ -49,39 +66,7 @@ private var students: List<Student>? = null
 
     private fun getAllStudents() {
         Model.shared.getAllStudents {
-            //TODO: remove when added users
-            if (it.isEmpty()) {
-                this.students = listOf(
-                    Student(
-                        "1",
-                        "Alice",
-                        "123-456-7890",
-                        "123 Main St",
-                        R.drawable.default_image,
-                        isChecked = true
-                    ),
-                    Student(
-                        "2",
-                        "Bob",
-                        "987-654-3210",
-                        "456 Oak Ave",
-                        R.drawable.ic_launcher_foreground,
-                        isChecked = false
-                    ),
-                    Student(
-                        "3",
-                        "Charlie",
-                        "555-123-4567",
-                        "789 Elm St",
-                        R.drawable.default_image,
-                        isChecked = true
-                    )
-                )
-                adapter?.set(this.students)
-            } else {
-            this.students = it
             adapter?.set(it)
-            }
             adapter?.notifyDataSetChanged()
     }
 }
